@@ -1,4 +1,4 @@
-package hexlet.code.gameslogic;
+package hexlet.code.games.logic;
 
 import hexlet.code.Cli;
 
@@ -27,9 +27,9 @@ public class GameEven {
             System.out.println("Question: " + questionInt);
             System.out.println("Your answer: ");
             answer = scanner.nextLine();
-            if (!checkAnswer(answer)) {
-                System.out.println("'" + answer + "' is wrong answer ;(. Correct answer was '" + findCorrectAnswer() + "'\n" +
-                "Let's try again, " + playerName + "!");
+            if (!checkAnswer()) {
+                System.out.println("'" + answer + "' is wrong answer ;(. Correct answer was '"
+                        + findCorrectAnswer() + "'\n" + "Let's try again, " + playerName + "!");
                 break;
             } else {
                 System.out.println("Correct!");
@@ -42,13 +42,13 @@ public class GameEven {
         }
     }
 
-    public static boolean checkAnswer(String answer) {
+    public static boolean checkAnswer() {
         boolean isCorrect = false;
         String correctAnswer;
 
         correctAnswer = findCorrectAnswer();
 
-        if (answer.equals(correctAnswer)) {
+        if (answer.equalsIgnoreCase(correctAnswer)) {
             isCorrect = true;
         }
 

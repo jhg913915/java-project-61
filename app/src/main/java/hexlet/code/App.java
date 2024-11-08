@@ -1,6 +1,6 @@
 package hexlet.code;
 
-import hexlet.code.gameslogic.GameEven;
+import hexlet.code.games.logic.GameEven;
 
 import java.util.Scanner;
 
@@ -22,19 +22,19 @@ public class App {
         gameType = scanner.nextLine();
 
         switch (gameType) {
-        case "2":
-            GameEven.gamePlay();
-            break;
-        case "1":
-            greeting();
-            break;
-        case "0":
-            System.out.println("Goodbye!");
-            break;
-        default:
-            System.out.println("""
-                    There is no such option!
-                    Select again!\s""");
+            case "2":
+                GameEven.gamePlay();
+                break;
+            case "1":
+                greeting();
+                break;
+            case "0":
+                System.out.println("Goodbye!");
+                break;
+            default:
+                System.out.println("""
+                        There is no such option!
+                        Select again!\s""");
         }
     }
 }
