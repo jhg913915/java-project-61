@@ -19,14 +19,14 @@ public class GameCalculator {
 
         // Forming a question
         int lowerBound = 0;
-        int upperBound = 100;
+        int upperBound = 10;
         ArrayList<String> operatorsList = new ArrayList<String>(Arrays.asList("+", "*", "-"));
         while (triesCounter < 3) {
             question = Engine.returnRandomNumber(lowerBound, upperBound) + " "
                     + Engine.returnRandomFromList(operatorsList) + " "
                     + Engine.returnRandomNumber(lowerBound, upperBound);
             Engine.formQuestion(question);
-            answer = Engine.askForAnswer();
+            answer = Engine.askForAnswer().trim();
 
             if (Engine.checkAnswer(answer, findCorrectAnswer())) {
                 System.out.println("Correct!");
@@ -43,6 +43,7 @@ public class GameCalculator {
     }
 
     public static String findCorrectAnswer() {
+        question = question.replaceAll("\\s","");
         String[] parts = question.split("(?<=[-+*])|(?=[-+*])");
 
         int num1 = Integer.parseInt(parts[0]);

@@ -23,6 +23,7 @@ public class App {
         switch (gameType) {
             case "3":
                 GameCalculator.gamePlay();
+                break;
             case "2":
                 GameEven.gamePlay();
                 break;
