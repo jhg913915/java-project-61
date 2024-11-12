@@ -2,6 +2,7 @@ package hexlet.code;
 
 import hexlet.code.games.GameCalculator;
 import hexlet.code.games.GameEven;
+import hexlet.code.games.GameGCD;
 
 import java.util.Scanner;
 
@@ -15,12 +16,16 @@ public class App {
                 Please enter the game number and press Enter.
                 1 - Greet
                 2 - Even
-                3 - Calculator
+                3 - Calc
+                4 - GCD
                 0 - Exit
                 Your choice: \s""");
         gameType = scanner.nextLine();
 
         switch (gameType) {
+            case "4":
+                GameGCD.gamePlay();
+                break;
             case "3":
                 GameCalculator.gamePlay();
                 break;
