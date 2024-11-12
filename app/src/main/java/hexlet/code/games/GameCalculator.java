@@ -43,7 +43,7 @@ public class GameCalculator {
     }
 
     public static String findCorrectAnswer() {
-        question = question.replaceAll("\\s","");
+        question = question.replaceAll("\\s", "");
         String[] parts = question.split("(?<=[-+*])|(?=[-+*])");
 
         int num1 = Integer.parseInt(parts[0]);

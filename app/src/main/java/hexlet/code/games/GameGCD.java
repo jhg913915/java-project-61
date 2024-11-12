@@ -25,7 +25,10 @@ public class GameGCD {
             gcd = Engine.returnRandomNumber(lowerBound, upperBound);
             firstNum = Engine.returnRandomNumber(lowerBound, gcd);
             secondNum = Engine.returnRandomNumber(lowerBound, gcd);
-            if (secondNum == firstNum) {
+
+            // We need to check that gcd != 1 because if it is,
+            // it can create infinite loop
+            if (secondNum == firstNum && gcd != 1) {
                 do {
                     secondNum = Engine.returnRandomNumber(lowerBound, gcd);
                 } while (secondNum == firstNum);
@@ -55,7 +58,7 @@ public class GameGCD {
     private static int getGCD(int a, int b) {
         BigInteger b1 = BigInteger.valueOf(a);
         BigInteger b2 = BigInteger.valueOf(b);
-        BigInteger gcd = b1.gcd(b2);
-        return gcd.intValue();
+        BigInteger gcdTemp = b1.gcd(b2);
+        return gcdTemp.intValue();
     }
 }
