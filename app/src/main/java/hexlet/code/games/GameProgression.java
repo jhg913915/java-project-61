@@ -15,12 +15,11 @@ public class GameProgression {
         Engine.formTask("What number is missing in the progression");
 
         // Forming a question
-        int progLowerBound = 5;
         int progUpperBound = 10;
         int lowerBound = 2;
         int upperBound = 50;
         while (triesCounter < 3) {
-            int missingNumberIndex = Engine.returnRandomNumber(progLowerBound, progUpperBound);
+            int missingNumberIndex = Engine.returnRandomNumber(1, progUpperBound);
             int startNumber = Engine.returnRandomNumber(lowerBound, upperBound);
             int addUpNumber = Engine.returnRandomNumber(lowerBound, upperBound);
             StringBuilder sb = new StringBuilder();
