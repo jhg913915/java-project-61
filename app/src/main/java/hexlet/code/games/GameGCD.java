@@ -10,7 +10,7 @@ public class GameGCD {
     static String playerName;
     static int secondNum;
     static int firstNum;
-    static int gcd;
+    static int multiplier;
     public static void gamePlay() {
         int triesCounter = 0;
 
@@ -22,18 +22,13 @@ public class GameGCD {
         int upperBound = 10;
 
         while (triesCounter < 3) {
-            gcd = Engine.returnRandomNumber(lowerBound, upperBound);
-            firstNum = Engine.returnRandomNumber(lowerBound, gcd);
-            secondNum = Engine.returnRandomNumber(lowerBound, gcd);
-
-            // We need to check that gcd != 1 because if it is,
-            // it can create infinite loop
-            if (secondNum == firstNum && gcd != 1) {
-                do {
-                    secondNum = Engine.returnRandomNumber(lowerBound, gcd);
-                } while (secondNum == firstNum);
+            multiplier = Engine.returnRandomNumber(lowerBound, upperBound);
+            firstNum = Engine.returnRandomNumber(lowerBound, upperBound) * multiplier;
+            secondNum = Engine.returnRandomNumber(lowerBound, upperBound) * multiplier;
+            if (secondNum == firstNum) {
+                secondNum += multiplier;
             }
-            question = firstNum * gcd + " " + secondNum * gcd;
+            question = firstNum  + " " + secondNum;
             Engine.formQuestion(question);
             answer = Engine.askForAnswer().trim();
 
@@ -52,7 +47,7 @@ public class GameGCD {
     }
 
     private static String findCorrectAnswer() {
-        return String.valueOf(getGCD(firstNum * gcd, secondNum * gcd));
+        return String.valueOf(getGCD(firstNum, secondNum));
     }
 
     private static int getGCD(int a, int b) {
