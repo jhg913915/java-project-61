@@ -8,14 +8,14 @@ public class GamePrime {
     private static int question;
 
     public static void gamePlay() {
-        int maxTries = 3;
+        int maxTries = Engine.getMaxTries();
         int triesCounter = 0;
 
         String playerName = Engine.greetPlayer();
         Engine.formTask("Answer 'yes' if given number is prime. Otherwise answer 'no'.");
 
-        int lowerBound = 0;
-        int upperBound = 100;
+        final int lowerBound = 0;
+        final int upperBound = 100;
         while (triesCounter < maxTries) {
             question = Engine.returnRandomNumber(lowerBound, upperBound);
             Engine.formQuestion(String.valueOf(question));

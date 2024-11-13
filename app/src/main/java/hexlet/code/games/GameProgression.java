@@ -5,16 +5,16 @@ import hexlet.code.Engine;
 public class GameProgression {
 
     public static void gamePlay() {
-        int maxTries = 3;
+        int maxTries = Engine.getMaxTries();
         int triesCounter = 0;
         String correctAnswer = "";
 
         String playerName = Engine.greetPlayer();
         Engine.formTask("What number is missing in the progression");
 
-        int progUpperBound = 10;
-        int lowerBound = 2;
-        int upperBound = 50;
+        final int progUpperBound = 10;
+        final int lowerBound = 2;
+        final int upperBound = 50;
         while (triesCounter < maxTries) {
             int missingNumberIndex = Engine.returnRandomNumber(1, progUpperBound);
             int startNumber = Engine.returnRandomNumber(lowerBound, upperBound);

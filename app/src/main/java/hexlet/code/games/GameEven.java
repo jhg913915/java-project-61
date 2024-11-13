@@ -6,7 +6,7 @@ public class GameEven {
     private static int question;
 
     public static void gamePlay() {
-        int maxTries = 3;
+        int maxTries = Engine.getMaxTries();
         int triesCounter = 0;
 
         // Greetings and getting playerName
@@ -14,8 +14,8 @@ public class GameEven {
         Engine.formTask("Answer 'yes' if the number is even, otherwise answer 'no'.");
 
         // Forming a question
-        int lowerBound = 0;
-        int upperBound = 100;
+        final int lowerBound = 0;
+        final int upperBound = 100;
         while (triesCounter < maxTries) {
             question = Engine.returnRandomNumber(lowerBound, upperBound);
             Engine.formQuestion(String.valueOf(question));

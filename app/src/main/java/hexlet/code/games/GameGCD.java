@@ -9,15 +9,15 @@ public class GameGCD {
     private static int firstNum;
 
     public static void gamePlay() {
-        int maxTries = 3;
+        int maxTries = Engine.getMaxTries();
         int triesCounter = 0;
 
         String playerName = Engine.greetPlayer();
 
         Engine.formTask("Find the greatest common divisor of given numbers.");
 
-        int lowerBound = 1;
-        int upperBound = 10;
+        final int lowerBound = 1;
+        final int upperBound = 10;
 
         while (triesCounter < maxTries) {
             int multiplier = Engine.returnRandomNumber(lowerBound, upperBound);

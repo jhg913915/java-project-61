@@ -9,7 +9,7 @@ public class GameCalculator {
     private static String question;
 
     public static void gamePlay() {
-        int maxTries = 3;
+        int maxTries = Engine.getMaxTries();
         int triesCounter = 0;
         // Greetings and getting playerName
         String playerName = Engine.greetPlayer();
@@ -17,8 +17,8 @@ public class GameCalculator {
         Engine.formTask("What is the result of the expression?");
 
         // Forming a question
-        int lowerBound = 0;
-        int upperBound = 10;
+        final int lowerBound = 0;
+        final int upperBound = 10;
         ArrayList<String> operatorsList = new ArrayList<String>(Arrays.asList("+", "*", "-"));
         while (triesCounter < maxTries) {
             question = Engine.returnRandomNumber(lowerBound, upperBound) + " "
