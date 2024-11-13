@@ -5,32 +5,30 @@ import hexlet.code.Engine;
 import java.math.BigInteger;
 
 public class GameGCD {
-    static String question;
-    static String answer;
-    static String playerName;
-    static int secondNum;
-    static int firstNum;
-    static int multiplier;
+    private static int secondNum;
+    private static int firstNum;
+
     public static void gamePlay() {
+        int maxTries = 3;
         int triesCounter = 0;
 
-        playerName = Engine.greetPlayer();
+        String playerName = Engine.greetPlayer();
 
         Engine.formTask("Find the greatest common divisor of given numbers.");
 
         int lowerBound = 1;
         int upperBound = 10;
 
-        while (triesCounter < 3) {
-            multiplier = Engine.returnRandomNumber(lowerBound, upperBound);
+        while (triesCounter < maxTries) {
+            int multiplier = Engine.returnRandomNumber(lowerBound, upperBound);
             firstNum = Engine.returnRandomNumber(lowerBound, upperBound) * multiplier;
             secondNum = Engine.returnRandomNumber(lowerBound, upperBound) * multiplier;
             if (secondNum == firstNum) {
                 secondNum += multiplier;
             }
-            question = firstNum  + " " + secondNum;
+            String question = firstNum + " " + secondNum;
             Engine.formQuestion(question);
-            answer = Engine.askForAnswer().trim();
+            String answer = Engine.askForAnswer().trim();
 
             if (Engine.checkAnswer(answer, findCorrectAnswer())) {
                 System.out.println("Correct!");
@@ -41,7 +39,7 @@ public class GameGCD {
             }
         }
 
-        if (triesCounter >= 3) {
+        if (triesCounter >= maxTries) {
             Engine.printSuccess(playerName);
         }
     }

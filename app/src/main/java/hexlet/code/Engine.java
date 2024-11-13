@@ -5,6 +5,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Engine {
+
     public static void printFail(String wrongAnswer, String answer, String playerName) {
         System.out.println("'" + wrongAnswer + "' is wrong answer ;(. Correct answer was '"
                 + answer + "'\n" + "Let's try again, " + playerName + "!");

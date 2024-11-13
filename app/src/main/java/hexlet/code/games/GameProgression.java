@@ -3,22 +3,19 @@ package hexlet.code.games;
 import hexlet.code.Engine;
 
 public class GameProgression {
-    static String question;
-    static String answer;
-    static String playerName;
-    public static void gamePlay() {
-        String correctAnswer = "";
-        int triesCounter = 0;
 
-        // Greetings and getting playerName
-        playerName = Engine.greetPlayer();
+    public static void gamePlay() {
+        int maxTries = 3;
+        int triesCounter = 0;
+        String correctAnswer = "";
+
+        String playerName = Engine.greetPlayer();
         Engine.formTask("What number is missing in the progression");
 
-        // Forming a question
         int progUpperBound = 10;
         int lowerBound = 2;
         int upperBound = 50;
-        while (triesCounter < 3) {
+        while (triesCounter < maxTries) {
             int missingNumberIndex = Engine.returnRandomNumber(1, progUpperBound);
             int startNumber = Engine.returnRandomNumber(lowerBound, upperBound);
             int addUpNumber = Engine.returnRandomNumber(lowerBound, upperBound);
@@ -33,9 +30,9 @@ public class GameProgression {
                     correctAnswer = String.valueOf(startNumber);
                 }
             }
-            question = sb.toString();
+            String question = sb.toString();
             Engine.formQuestion(question);
-            answer = Engine.askForAnswer();
+            String answer = Engine.askForAnswer();
 
             if (Engine.checkAnswer(answer, correctAnswer)) {
                 System.out.println("Correct!");
@@ -46,7 +43,7 @@ public class GameProgression {
             }
         }
 
-        if (triesCounter >= 3) {
+        if (triesCounter >= maxTries) {
             Engine.printSuccess(playerName);
         }
     }

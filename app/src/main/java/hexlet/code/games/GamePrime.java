@@ -5,21 +5,21 @@ import hexlet.code.Engine;
 import java.math.BigInteger;
 
 public class GamePrime {
-    static int question;
-    static String answer;
-    static String playerName;
+    private static int question;
+
     public static void gamePlay() {
+        int maxTries = 3;
         int triesCounter = 0;
 
-        playerName = Engine.greetPlayer();
+        String playerName = Engine.greetPlayer();
         Engine.formTask("Answer 'yes' if given number is prime. Otherwise answer 'no'.");
 
         int lowerBound = 0;
         int upperBound = 100;
-        while (triesCounter < 3) {
+        while (triesCounter < maxTries) {
             question = Engine.returnRandomNumber(lowerBound, upperBound);
             Engine.formQuestion(String.valueOf(question));
-            answer = Engine.askForAnswer();
+            String answer = Engine.askForAnswer();
             if (Engine.checkAnswer(answer, findCorrectAnswer())) {
                 System.out.println("Correct!");
                 triesCounter++;
@@ -29,7 +29,7 @@ public class GamePrime {
             }
         }
 
-        if (triesCounter >= 3) {
+        if (triesCounter >= maxTries) {
             Engine.printSuccess(playerName);
         }
     }

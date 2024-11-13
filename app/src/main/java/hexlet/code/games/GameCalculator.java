@@ -6,14 +6,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class GameCalculator {
-    static String question;
-    static String answer;
-    static String playerName;
+    private static String question;
 
     public static void gamePlay() {
+        int maxTries = 3;
         int triesCounter = 0;
         // Greetings and getting playerName
-        playerName = Engine.greetPlayer();
+        String playerName = Engine.greetPlayer();
 
         Engine.formTask("What is the result of the expression?");
 
@@ -21,12 +20,12 @@ public class GameCalculator {
         int lowerBound = 0;
         int upperBound = 10;
         ArrayList<String> operatorsList = new ArrayList<String>(Arrays.asList("+", "*", "-"));
-        while (triesCounter < 3) {
+        while (triesCounter < maxTries) {
             question = Engine.returnRandomNumber(lowerBound, upperBound) + " "
                     + Engine.returnRandomFromList(operatorsList) + " "
                     + Engine.returnRandomNumber(lowerBound, upperBound);
             Engine.formQuestion(question);
-            answer = Engine.askForAnswer().trim();
+            String answer = Engine.askForAnswer().trim();
 
             if (Engine.checkAnswer(answer, findCorrectAnswer())) {
                 System.out.println("Correct!");
@@ -37,7 +36,7 @@ public class GameCalculator {
             }
         }
 
-        if (triesCounter >= 3) {
+        if (triesCounter >= maxTries) {
             Engine.printSuccess(playerName);
         }
     }
