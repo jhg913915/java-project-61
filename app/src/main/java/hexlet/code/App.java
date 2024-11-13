@@ -9,12 +9,11 @@ import hexlet.code.games.GameCalculator;
 import java.util.Scanner;
 
 public class App {
-
-
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         String gameType;
         System.out.println("""
+                Welcome to the Brain Games!
                 Please enter the game number and press Enter.
                 1 - Greet
                 2 - Even
