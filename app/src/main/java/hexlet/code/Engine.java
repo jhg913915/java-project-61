@@ -5,7 +5,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Engine {
-    private static final int maxTries = 3;
+    private static final int MAX_TRIES = 3;
 
     public static void printFail(String wrongAnswer, String answer, String playerName) {
         System.out.println("'" + wrongAnswer + "' is wrong answer ;(. Correct answer was '"
@@ -64,6 +64,6 @@ public class Engine {
     }
 
     public static int getMaxTries() {
-        return maxTries;
+        return MAX_TRIES;
     }
 }
