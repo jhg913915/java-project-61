@@ -5,35 +5,29 @@ import hexlet.code.Engine;
 import java.math.BigInteger;
 
 public class GamePrime {
-    private static int question;
+    private static final int LOWER_BOUND = 0;
+    private static final int UPPER_BOUND = 100;
 
     public static void gamePlay() {
-        int maxTries = Engine.getMaxTries();
-        int triesCounter = 0;
-        String playerName = Engine.greetPlayer();
-        Engine.formTask("Answer 'yes' if given number is prime. Otherwise answer 'no'.");
-        final int lowerBound = 0;
-        final int upperBound = 100;
-        while (triesCounter < maxTries) {
-            question = Engine.returnRandomNumber(lowerBound, upperBound);
-            Engine.formQuestion(String.valueOf(question));
-            String answer = Engine.askForAnswer();
-            if (Engine.checkAnswer(answer, findCorrectAnswer())) {
-                System.out.println("Correct!");
-                triesCounter++;
-            } else {
-                Engine.printFail(answer, findCorrectAnswer(), playerName);
-                break;
-            }
-        }
-        if (triesCounter >= maxTries) {
-            Engine.printSuccess(playerName);
-        }
+        String task = "Answer 'yes' if given number is prime. Otherwise answer 'no'.";
+        String[][] rules = prepareRules();
+        Engine.playGame(task, rules);
     }
 
-    private static String findCorrectAnswer() {
+    private static String[][] prepareRules() {
+        String[][] rules = new String[Engine.getMaxTries()][2];
+        for (int i = 0; i < rules.length; i++) {
+            int questionInt = Engine.returnRandomNumber(LOWER_BOUND, UPPER_BOUND);
+            String answer = findCorrectAnswer(questionInt);
+            rules[i][0] = Integer.toString(questionInt);
+            rules[i][1] = answer;
+        }
+        return rules;
+    }
+
+    private static String findCorrectAnswer(int questionInt) {
         String result;
-        if (isPrime()) {
+        if (isPrime(questionInt)) {
             result = "yes";
         } else {
             result = "no";
@@ -41,9 +35,9 @@ public class GamePrime {
         return result;
     }
 
-    public static boolean isPrime() {
-        BigInteger bigInteger = BigInteger.valueOf(question);
-        return bigInteger.isProbablePrime((int) Math.log(question));
+    public static boolean isPrime(int questionInt) {
+        BigInteger bigInteger = BigInteger.valueOf(questionInt);
+        return bigInteger.isProbablePrime((int) Math.log(questionInt));
     }
 
 }

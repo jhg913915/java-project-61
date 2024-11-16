@@ -5,42 +5,35 @@ import hexlet.code.Engine;
 import java.math.BigInteger;
 
 public class GameGCD {
-    private static int secondNum;
-    private static int firstNum;
+    private static final int LOWER_BOUND = 1;
+    private static final int UPPER_BOUND = 10;
 
     public static void gamePlay() {
-        int maxTries = Engine.getMaxTries();
-        int triesCounter = 0;
-        String playerName = Engine.greetPlayer();
-        Engine.formTask("Find the greatest common divisor of given numbers.");
-        final int lowerBound = 1;
-        final int upperBound = 10;
-        while (triesCounter < maxTries) {
-            int multiplier = Engine.returnRandomNumber(lowerBound, upperBound);
-            firstNum = Engine.returnRandomNumber(lowerBound, upperBound) * multiplier;
-            secondNum = Engine.returnRandomNumber(lowerBound, upperBound) * multiplier;
+        String task = "Find the greatest common divisor of given numbers.";
+        String[][] rules = prepareRules();
+        Engine.playGame(task, rules);
+    }
+
+    private static String[][] prepareRules() {
+        String[][] rules = new String[Engine.getMaxTries()][2];
+        for (int i = 0; i < rules.length; i++) {
+            int multiplier = Engine.returnRandomNumber(LOWER_BOUND, UPPER_BOUND);
+            int firstNum = Engine.returnRandomNumber(LOWER_BOUND, UPPER_BOUND) * multiplier;
+            int secondNum = Engine.returnRandomNumber(LOWER_BOUND, UPPER_BOUND) * multiplier;
             if (secondNum == firstNum) {
                 secondNum += multiplier;
             }
             String question = firstNum + " " + secondNum;
-            Engine.formQuestion(question);
-            String answer = Engine.askForAnswer().trim();
-
-            if (Engine.checkAnswer(answer, findCorrectAnswer())) {
-                System.out.println("Correct!");
-                triesCounter++;
-            } else {
-                Engine.printFail(answer, findCorrectAnswer(), playerName);
-                break;
-            }
+            String answer = findCorrectAnswer(question);
+            rules[i][0] = question;
+            rules[i][1] = answer;
         }
-        if (triesCounter >= maxTries) {
-            Engine.printSuccess(playerName);
-        }
+        return rules;
     }
 
-    private static String findCorrectAnswer() {
-        return String.valueOf(getGCD(firstNum, secondNum));
+    private static String findCorrectAnswer(String question) {
+        String[] parts = question.split(" ");
+        return String.valueOf(getGCD(Integer.parseInt(parts[0]), Integer.parseInt(parts[1])));
     }
 
     private static int getGCD(int a, int b) {

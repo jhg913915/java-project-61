@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class GameCalculator {
+    private static final int LOWER_BOUND = 0;
+    private static final int UPPER_BOUND = 10;
 
     public static void gamePlay() {
         String task = "What is the result of the expression?";
@@ -14,14 +16,12 @@ public class GameCalculator {
     }
 
     public static String[][] prepareRules() {
-        final int lowerBound = 0;
-        final int upperBound = 10;
         final ArrayList<String> operators = new ArrayList<>(Arrays.asList("+", "*", "-"));
         String[][] rules = new String[Engine.getMaxTries()][2];
         for (int i = 0; i < rules.length; i++) {
-            String question = Engine.returnRandomNumber(lowerBound, upperBound) + " "
+            String question = Engine.returnRandomNumber(LOWER_BOUND, UPPER_BOUND) + " "
                     + Engine.returnRandomFromList(operators) + " "
-                    + Engine.returnRandomNumber(lowerBound, upperBound);
+                    + Engine.returnRandomNumber(LOWER_BOUND, UPPER_BOUND);
             String answer = findCorrectAnswer(question);
             rules[i][0] = question;
             rules[i][1] = answer;

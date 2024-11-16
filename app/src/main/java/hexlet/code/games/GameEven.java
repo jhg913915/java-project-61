@@ -3,35 +3,30 @@ package hexlet.code.games;
 import hexlet.code.Engine;
 
 public class GameEven {
-    private static int question;
+    private static final int LOWER_BOUND = 1;
+    private static final int UPPER_BOUND = 100;
 
     public static void gamePlay() {
-        int maxTries = Engine.getMaxTries();
-        int triesCounter = 0;
-        String playerName = Engine.greetPlayer();
-        Engine.formTask("Answer 'yes' if the number is even, otherwise answer 'no'.");
-        final int lowerBound = 0;
-        final int upperBound = 100;
-        while (triesCounter < maxTries) {
-            question = Engine.returnRandomNumber(lowerBound, upperBound);
-            Engine.formQuestion(String.valueOf(question));
-            String answer = Engine.askForAnswer();
-            if (Engine.checkAnswer(answer, findCorrectAnswer())) {
-                System.out.println("Correct!");
-                triesCounter++;
-            } else {
-                Engine.printFail(answer, findCorrectAnswer(), playerName);
-                break;
-            }
-        }
-        if (triesCounter >= maxTries) {
-            Engine.printSuccess(playerName);
-        }
+        String task = "Answer 'yes' if the number is even, otherwise answer 'no'.";
+        String[][] rules = prepareRules();
+        Engine.playGame(task, rules);
     }
 
-    public static String findCorrectAnswer() {
+    private static String[][] prepareRules() {
+        String[][] rules = new String[Engine.getMaxTries()][2];
+        for (int i = 0; i < rules.length; i++) {
+            int questionInt = Engine.returnRandomNumber(LOWER_BOUND, UPPER_BOUND);
+            String answer = findCorrectAnswer(questionInt);
+            rules[i][0] = Integer.toString(questionInt);
+            rules[i][1] = answer;
+        }
+        return rules;
+
+    }
+
+    public static String findCorrectAnswer(int questionInt) {
         String result;
-        if (question % 2 == 0) {
+        if (questionInt % 2 == 0) {
             result = "yes";
         } else {
             result = "no";

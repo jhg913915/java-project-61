@@ -3,6 +3,8 @@ package hexlet.code.games;
 import hexlet.code.Engine;
 
 public class GameProgression {
+    private static final int LOWER_BOUND = 2;
+    private static final int UPPER_BOUND = 50;
 
     public static void gamePlay() {
         String task = "What number is missing in the progression";
@@ -12,13 +14,11 @@ public class GameProgression {
 
     private static String[][] prepareRules() {
         final int progressionLength = 10;
-        final int lowerBound = 2;
-        final int upperBound = 50;
         String[][] rules = new String[Engine.getMaxTries()][2];
         for (int i = 0; i < rules.length; i++) {
             int missingNumberIndex = Engine.returnRandomNumber(1, progressionLength);
-            int startNumber = Engine.returnRandomNumber(lowerBound, upperBound);
-            int addUpNumber = Engine.returnRandomNumber(lowerBound, upperBound);
+            int startNumber = Engine.returnRandomNumber(LOWER_BOUND, UPPER_BOUND);
+            int addUpNumber = Engine.returnRandomNumber(LOWER_BOUND, UPPER_BOUND);
             String unparsedProgression = createUnparsedProgression(startNumber, addUpNumber,
                     progressionLength, missingNumberIndex);
             String question = findQuestion(unparsedProgression);
