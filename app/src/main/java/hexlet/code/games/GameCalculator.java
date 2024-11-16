@@ -6,42 +6,34 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class GameCalculator {
-    private static String question;
 
     public static void gamePlay() {
-        int maxTries = Engine.getMaxTries();
-        int triesCounter = 0;
-        String playerName = Engine.greetPlayer();
-        Engine.formTask("What is the result of the expression?");
-        final int lowerBound = 0;
-        final int upperBound = 10;
-        ArrayList<String> operatorsList = new ArrayList<String>(Arrays.asList("+", "*", "-"));
-        while (triesCounter < maxTries) {
-            question = Engine.returnRandomNumber(lowerBound, upperBound) + " "
-                    + Engine.returnRandomFromList(operatorsList) + " "
-                    + Engine.returnRandomNumber(lowerBound, upperBound);
-            Engine.formQuestion(question);
-            String answer = Engine.askForAnswer().trim();
-
-            if (Engine.checkAnswer(answer, findCorrectAnswer())) {
-                System.out.println("Correct!");
-                triesCounter++;
-            } else {
-                Engine.printFail(answer, findCorrectAnswer(), playerName);
-                break;
-            }
-        }
-        if (triesCounter >= maxTries) {
-            Engine.printSuccess(playerName);
-        }
+        String task = "What is the result of the expression?";
+        String[][] rules = prepareRules();
+        Engine.playGame(task, rules);
     }
 
-    public static String findCorrectAnswer() {
-        question = question.replaceAll("\\s", "");
-        String[] parts = question.split("(?<=[-+*])|(?=[-+*])");
+    public static String[][] prepareRules() {
+        final int lowerBound = 0;
+        final int upperBound = 10;
+        final ArrayList<String> operators = new ArrayList<>(Arrays.asList("+", "*", "-"));
+        String[][] rules = new String[Engine.getMaxTries()][2];
+        for (int i = 0; i < rules.length; i++) {
+            String question = Engine.returnRandomNumber(lowerBound, upperBound) + " "
+                    + Engine.returnRandomFromList(operators) + " "
+                    + Engine.returnRandomNumber(lowerBound, upperBound);
+            String answer = findCorrectAnswer(question);
+            rules[i][0] = question;
+            rules[i][1] = answer;
+        }
+        return rules;
+    }
+
+    private static String findCorrectAnswer(String question) {
+        String[] parts = question.split(" ");
         int num1 = Integer.parseInt(parts[0]);
-        int num2 = Integer.parseInt(parts[2]);
         String operator = parts[1];
+        int num2 = Integer.parseInt(parts[2]);
         int result = calculate(num1, num2, operator);
         return String.valueOf(result);
     }

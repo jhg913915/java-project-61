@@ -1,6 +1,10 @@
 package hexlet.code;
 
-import hexlet.code.games.*;
+import hexlet.code.games.GameCalculator;
+import hexlet.code.games.GameEven;
+import hexlet.code.games.GameGCD;
+import hexlet.code.games.GamePrime;
+import hexlet.code.games.GameProgression;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -8,6 +12,22 @@ import java.util.Scanner;
 
 public class Engine {
     private static final int MAX_TRIES = 3;
+
+    public static void playGame(String task, String[][] rules) {
+        String playerName = greetPlayer();
+        formTask(task);
+        for (String[] rule : rules) {
+            formQuestion(rule[0]);
+            String playerAnswer = askForAnswer().trim();
+            if (checkAnswer(playerAnswer, rule[1])) {
+                System.out.println("Correct!");
+            } else {
+                printFail(playerAnswer, rule[1], playerName);
+                return;
+            }
+        }
+        printSuccess(playerName);
+    }
 
     public static void printFail(String wrongAnswer, String answer, String playerName) {
         System.out.println("'" + wrongAnswer + "' is wrong answer ;(. Correct answer was '"
