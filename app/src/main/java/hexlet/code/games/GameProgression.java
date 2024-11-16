@@ -8,10 +8,8 @@ public class GameProgression {
         int maxTries = Engine.getMaxTries();
         int triesCounter = 0;
         String correctAnswer = "";
-
         String playerName = Engine.greetPlayer();
         Engine.formTask("What number is missing in the progression");
-
         final int progUpperBound = 10;
         final int lowerBound = 2;
         final int upperBound = 50;

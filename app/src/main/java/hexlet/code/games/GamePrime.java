@@ -10,10 +10,8 @@ public class GamePrime {
     public static void gamePlay() {
         int maxTries = Engine.getMaxTries();
         int triesCounter = 0;
-
         String playerName = Engine.greetPlayer();
         Engine.formTask("Answer 'yes' if given number is prime. Otherwise answer 'no'.");
-
         final int lowerBound = 0;
         final int upperBound = 100;
         while (triesCounter < maxTries) {
@@ -28,7 +26,6 @@ public class GamePrime {
                 break;
             }
         }
-
         if (triesCounter >= maxTries) {
             Engine.printSuccess(playerName);
         }
@@ -36,7 +33,6 @@ public class GamePrime {
 
     private static String findCorrectAnswer() {
         String result;
-
         if (isPrime()) {
             result = "yes";
         } else {

@@ -11,12 +11,8 @@ public class GameCalculator {
     public static void gamePlay() {
         int maxTries = Engine.getMaxTries();
         int triesCounter = 0;
-        // Greetings and getting playerName
         String playerName = Engine.greetPlayer();
-
         Engine.formTask("What is the result of the expression?");
-
-        // Forming a question
         final int lowerBound = 0;
         final int upperBound = 10;
         ArrayList<String> operatorsList = new ArrayList<String>(Arrays.asList("+", "*", "-"));
@@ -35,7 +31,6 @@ public class GameCalculator {
                 break;
             }
         }
-
         if (triesCounter >= maxTries) {
             Engine.printSuccess(playerName);
         }
@@ -44,11 +39,9 @@ public class GameCalculator {
     public static String findCorrectAnswer() {
         question = question.replaceAll("\\s", "");
         String[] parts = question.split("(?<=[-+*])|(?=[-+*])");
-
         int num1 = Integer.parseInt(parts[0]);
         int num2 = Integer.parseInt(parts[2]);
         String operator = parts[1];
-
         int result = calculate(num1, num2, operator);
         return String.valueOf(result);
     }

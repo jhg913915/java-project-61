@@ -11,14 +11,10 @@ public class GameGCD {
     public static void gamePlay() {
         int maxTries = Engine.getMaxTries();
         int triesCounter = 0;
-
         String playerName = Engine.greetPlayer();
-
         Engine.formTask("Find the greatest common divisor of given numbers.");
-
         final int lowerBound = 1;
         final int upperBound = 10;
-
         while (triesCounter < maxTries) {
             int multiplier = Engine.returnRandomNumber(lowerBound, upperBound);
             firstNum = Engine.returnRandomNumber(lowerBound, upperBound) * multiplier;
@@ -38,7 +34,6 @@ public class GameGCD {
                 break;
             }
         }
-
         if (triesCounter >= maxTries) {
             Engine.printSuccess(playerName);
         }
