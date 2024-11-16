@@ -5,44 +5,55 @@ import hexlet.code.Engine;
 public class GameProgression {
 
     public static void gamePlay() {
-        int maxTries = Engine.getMaxTries();
-        int triesCounter = 0;
-        String correctAnswer = "";
-        String playerName = Engine.greetPlayer();
-        Engine.formTask("What number is missing in the progression");
-        final int progUpperBound = 10;
+        String task = "What number is missing in the progression";
+        String[][] rules = prepareRules();
+        Engine.playGame(task, rules);
+    }
+
+    private static String[][] prepareRules() {
+        final int progressionLength = 10;
         final int lowerBound = 2;
         final int upperBound = 50;
-        while (triesCounter < maxTries) {
-            int missingNumberIndex = Engine.returnRandomNumber(1, progUpperBound);
+        String[][] rules = new String[Engine.getMaxTries()][2];
+        for (int i = 0; i < rules.length; i++) {
+            int missingNumberIndex = Engine.returnRandomNumber(1, progressionLength);
             int startNumber = Engine.returnRandomNumber(lowerBound, upperBound);
             int addUpNumber = Engine.returnRandomNumber(lowerBound, upperBound);
-            StringBuilder sb = new StringBuilder();
-            sb.append(startNumber);
-            for (int i = 0; i <= progUpperBound; i++) {
-                startNumber += addUpNumber;
-                if (i != missingNumberIndex) {
-                    sb.append(" ").append(startNumber);
-                } else {
-                    sb.append(" ").append("..");
-                    correctAnswer = String.valueOf(startNumber);
-                }
-            }
-            String question = sb.toString();
-            Engine.formQuestion(question);
-            String answer = Engine.askForAnswer();
+            String unparsedProgression = createUnparsedProgression(startNumber, addUpNumber,
+                    progressionLength, missingNumberIndex);
+            String question = findQuestion(unparsedProgression);
+            String answer = findCorrectAnswer(unparsedProgression);
+            rules[i][0] = question;
+            rules[i][1] = answer;
+        }
+        return rules;
+    }
 
-            if (Engine.checkAnswer(answer, correctAnswer)) {
-                System.out.println("Correct!");
-                triesCounter++;
+    public static String createUnparsedProgression(int startNumber, int addUpNumber, int progressionLength,
+                                                   int missingNumberIndex) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(startNumber);
+        String correctAnswer = "";
+        for (int i = 0; i <= progressionLength; i++) {
+            startNumber += addUpNumber;
+            if (i != missingNumberIndex) {
+                sb.append(" ").append(startNumber);
             } else {
-                Engine.printFail(answer, correctAnswer, playerName);
-                break;
+                sb.append(" ").append("..");
+                correctAnswer = String.valueOf(startNumber);
             }
         }
+        sb.append(":").append(correctAnswer);
+        return sb.toString();
+    }
 
-        if (triesCounter >= maxTries) {
-            Engine.printSuccess(playerName);
-        }
+    public static String findCorrectAnswer(String unparsedProgression) {
+        String[] parts = unparsedProgression.split(":");
+        return parts[1];
+    }
+
+    public static String findQuestion(String unparsedProgression) {
+        String[] parts = unparsedProgression.split(":");
+        return parts[0];
     }
 }
