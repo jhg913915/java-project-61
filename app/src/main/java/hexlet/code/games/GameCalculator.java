@@ -1,6 +1,7 @@
 package hexlet.code.games;
 
 import hexlet.code.Engine;
+import hexlet.code.GameUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,9 +20,9 @@ public class GameCalculator {
         final ArrayList<String> operators = new ArrayList<>(Arrays.asList("+", "*", "-"));
         String[][] rules = new String[Engine.getMaxTries()][2];
         for (int i = 0; i < rules.length; i++) {
-            String question = Engine.returnRandomNumber(LOWER_BOUND, UPPER_BOUND) + " "
-                    + Engine.returnRandomFromList(operators) + " "
-                    + Engine.returnRandomNumber(LOWER_BOUND, UPPER_BOUND);
+            String question = GameUtils.returnRandomNumber(LOWER_BOUND, UPPER_BOUND) + " "
+                    + GameUtils.returnRandomFromList(operators) + " "
+                    + GameUtils.returnRandomNumber(LOWER_BOUND, UPPER_BOUND);
             String answer = findCorrectAnswer(question);
             rules[i][0] = question;
             rules[i][1] = answer;

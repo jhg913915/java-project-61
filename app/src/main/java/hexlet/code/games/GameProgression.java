@@ -1,6 +1,7 @@
 package hexlet.code.games;
 
 import hexlet.code.Engine;
+import hexlet.code.GameUtils;
 
 public class GameProgression {
     private static final int LOWER_BOUND = 2;
@@ -16,9 +17,9 @@ public class GameProgression {
         final int progressionLength = 10;
         String[][] rules = new String[Engine.getMaxTries()][2];
         for (int i = 0; i < rules.length; i++) {
-            int missingNumberIndex = Engine.returnRandomNumber(1, progressionLength);
-            int startNumber = Engine.returnRandomNumber(LOWER_BOUND, UPPER_BOUND);
-            int addUpNumber = Engine.returnRandomNumber(LOWER_BOUND, UPPER_BOUND);
+            int missingNumberIndex = GameUtils.returnRandomNumber(1, progressionLength);
+            int startNumber = GameUtils.returnRandomNumber(LOWER_BOUND, UPPER_BOUND);
+            int addUpNumber = GameUtils.returnRandomNumber(LOWER_BOUND, UPPER_BOUND);
             String unparsedProgression = createUnparsedProgression(startNumber, addUpNumber,
                     progressionLength, missingNumberIndex);
             String question = findQuestion(unparsedProgression);

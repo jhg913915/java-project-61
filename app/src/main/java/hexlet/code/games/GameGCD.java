@@ -1,6 +1,7 @@
 package hexlet.code.games;
 
 import hexlet.code.Engine;
+import hexlet.code.GameUtils;
 
 import java.math.BigInteger;
 
@@ -17,9 +18,9 @@ public class GameGCD {
     private static String[][] prepareRules() {
         String[][] rules = new String[Engine.getMaxTries()][2];
         for (int i = 0; i < rules.length; i++) {
-            int multiplier = Engine.returnRandomNumber(LOWER_BOUND, UPPER_BOUND);
-            int firstNum = Engine.returnRandomNumber(LOWER_BOUND, UPPER_BOUND) * multiplier;
-            int secondNum = Engine.returnRandomNumber(LOWER_BOUND, UPPER_BOUND) * multiplier;
+            int multiplier = GameUtils.returnRandomNumber(LOWER_BOUND, UPPER_BOUND);
+            int firstNum = GameUtils.returnRandomNumber(LOWER_BOUND, UPPER_BOUND) * multiplier;
+            int secondNum = GameUtils.returnRandomNumber(LOWER_BOUND, UPPER_BOUND) * multiplier;
             if (secondNum == firstNum) {
                 secondNum += multiplier;
             }

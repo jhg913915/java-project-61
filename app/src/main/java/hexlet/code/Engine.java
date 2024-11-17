@@ -6,8 +6,6 @@ import hexlet.code.games.GameGCD;
 import hexlet.code.games.GamePrime;
 import hexlet.code.games.GameProgression;
 
-import java.util.ArrayList;
-import java.util.Random;
 import java.util.Scanner;
 
 public class Engine {
@@ -19,7 +17,7 @@ public class Engine {
         for (String[] rule : rules) {
             formQuestion(rule[0]);
             String playerAnswer = askForAnswer().trim();
-            if (checkAnswer(playerAnswer, rule[1])) {
+            if (GameUtils.checkAnswer(playerAnswer, rule[1])) {
                 System.out.println("Correct!");
             } else {
                 printFail(playerAnswer, rule[1], playerName);
@@ -61,23 +59,6 @@ public class Engine {
         System.out.println("Your answer: ");
         answer = scanner.nextLine();
         return answer;
-    }
-
-    public static boolean checkAnswer(String answerToCheck, String answer) {
-        return answerToCheck.equalsIgnoreCase(answer);
-    }
-
-    public static String returnRandomFromList(ArrayList<String> list) {
-        Random rand = new Random();
-        if (!list.isEmpty()) {
-            return list.get(rand.nextInt(list.size()));
-        } else {
-            return null;
-        }
-    }
-
-    public static int returnRandomNumber(int lowerBound, int upperBound) {
-        return (int) ((Math.random() * (upperBound - lowerBound)) + lowerBound);
     }
 
     public static int getMaxTries() {

@@ -1,6 +1,7 @@
 package hexlet.code.games;
 
 import hexlet.code.Engine;
+import hexlet.code.GameUtils;
 
 public class GameEven {
     private static final int LOWER_BOUND = 1;
@@ -15,13 +16,12 @@ public class GameEven {
     private static String[][] prepareRules() {
         String[][] rules = new String[Engine.getMaxTries()][2];
         for (int i = 0; i < rules.length; i++) {
-            int questionInt = Engine.returnRandomNumber(LOWER_BOUND, UPPER_BOUND);
+            int questionInt = GameUtils.returnRandomNumber(LOWER_BOUND, UPPER_BOUND);
             String answer = findCorrectAnswer(questionInt);
             rules[i][0] = Integer.toString(questionInt);
             rules[i][1] = answer;
         }
         return rules;
-
     }
 
     public static String findCorrectAnswer(int questionInt) {
