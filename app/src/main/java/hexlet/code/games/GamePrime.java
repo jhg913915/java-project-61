@@ -3,16 +3,14 @@ package hexlet.code.games;
 import hexlet.code.Engine;
 import hexlet.code.GameUtils;
 
-import java.math.BigInteger;
-
 public class GamePrime {
     private static final int LOWER_BOUND = 1;
     private static final int UPPER_BOUND = 100;
+    private static final String TASK = "Answer 'yes' if given number is prime. Otherwise answer 'no'.";
 
     public static void gamePlay() {
-        String task = "Answer 'yes' if given number is prime. Otherwise answer 'no'.";
         String[][] rules = prepareRules();
-        Engine.playGame(task, rules);
+        Engine.playGame(TASK, rules);
     }
 
     private static String[][] prepareRules() {
@@ -37,7 +35,11 @@ public class GamePrime {
     }
 
     public static boolean isPrime(int questionInt) {
-        BigInteger bigInteger = BigInteger.valueOf(questionInt);
-        return bigInteger.isProbablePrime((int) Math.log(questionInt));
+        for (int i = 2; i < questionInt; i++) {
+            if ((questionInt % i) == 0) {
+                return false;
+            }
+        }
+        return true;
     }
 }

@@ -8,11 +8,11 @@ import java.math.BigInteger;
 public class GameGCD {
     private static final int LOWER_BOUND = 1;
     private static final int UPPER_BOUND = 10;
+    private static final String TASK = "Find the greatest common divisor of given numbers.";
 
     public static void gamePlay() {
-        String task = "Find the greatest common divisor of given numbers.";
         String[][] rules = prepareRules();
-        Engine.playGame(task, rules);
+        Engine.playGame(TASK, rules);
     }
 
     private static String[][] prepareRules() {

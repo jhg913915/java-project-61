@@ -6,11 +6,11 @@ import hexlet.code.GameUtils;
 public class GameProgression {
     private static final int LOWER_BOUND = 2;
     private static final int UPPER_BOUND = 50;
+    private static final String TASK = "What number is missing in the progression";
 
     public static void gamePlay() {
-        String task = "What number is missing in the progression";
         String[][] rules = prepareRules();
-        Engine.playGame(task, rules);
+        Engine.playGame(TASK, rules);
     }
 
     private static String[][] prepareRules() {

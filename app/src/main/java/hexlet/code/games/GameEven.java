@@ -6,11 +6,11 @@ import hexlet.code.GameUtils;
 public class GameEven {
     private static final int LOWER_BOUND = 1;
     private static final int UPPER_BOUND = 100;
+    private static final String TASK = "Answer 'yes' if the number is even, otherwise answer 'no'.";
 
     public static void gamePlay() {
-        String task = "Answer 'yes' if the number is even, otherwise answer 'no'.";
         String[][] rules = prepareRules();
-        Engine.playGame(task, rules);
+        Engine.playGame(TASK, rules);
     }
 
     private static String[][] prepareRules() {

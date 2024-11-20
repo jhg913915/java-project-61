@@ -9,11 +9,11 @@ import java.util.Arrays;
 public class GameCalculator {
     private static final int LOWER_BOUND = 0;
     private static final int UPPER_BOUND = 10;
+    private static final String TASK = "What is the result of the expression?";
 
     public static void gamePlay() {
-        String task = "What is the result of the expression?";
         String[][] rules = prepareRules();
-        Engine.playGame(task, rules);
+        Engine.playGame(TASK, rules);
     }
 
     public static String[][] prepareRules() {
